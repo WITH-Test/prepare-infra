@@ -5,7 +5,7 @@ import { context } from "@actions/github";
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
 
-async function exists(path: string) {
+async function exists(path: string): Promise<boolean> {
   try {
     await fs.access(path);
     return true;
@@ -25,7 +25,7 @@ async function main(): Promise<void> {
 
   console.log("Context:", context)
 
-  core.setOutput("dogeops", dogeOpsEnabled);
+  core.setOutput("enabled", dogeOpsEnabled);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
