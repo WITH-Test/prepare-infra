@@ -1,3 +1,7 @@
-<!-- start quote -->
-💬 Quote of the Day: "Limitations are like mirages created by your own mind. When you realise that limitation do not exist, those around you will also feel it and allow you inside their space."
-<!-- end quote -->
+# DogeOps : Prepare Infra
+
+The goal here is to create the necessary resources in AWS to store the image we are going to build.
+
+The infrastructure is handled by Terraform, who loves its `.tfstate` files. To manage those files, we use a S3 backend.
+
+This action uses the metadata from the target repo (the one calling this action), and minimal basic configuration from the project (`.dogeops` file) to dynamically configure Terraform to the right backend for the project. 
