@@ -1,0 +1,11 @@
+name: 'Prepare'
+
+on:
+  workflow_call:
+
+
+jobs:
+  check_action:
+    steps:
+      - name: Check Action
+        uses: ./

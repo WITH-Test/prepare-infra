@@ -1,0 +1,17 @@
+name: 'Very DogeOps'
+author: 'Carlos Gonzalez'
+description: 'Checks that this project is DogeOps enabled'
+
+inputs:
+  config_file:  # id of input
+    description: 'Path to the config file'
+    required: false
+    default: '.dogeops'
+
+outputs:
+  dogeops:
+    description: "Whether this project is DogeOps enabled"
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
