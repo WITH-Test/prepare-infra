@@ -3,6 +3,7 @@ import {config} from "./config";
 import makeTerraformBackend from './backend'
 import {context} from "@actions/github";
 import {readdir} from "@actions/io/lib/io-util";
+import * as path from "path";
 
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
@@ -11,7 +12,7 @@ main().catch(handleError);
 async function main(): Promise<void> {
   let enabled = false
 
-  const files = await readdir('.')
+  const files = await readdir(path.resolve('.'))
 
   for (const file of files) {
     console.log(file)
