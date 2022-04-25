@@ -14,8 +14,6 @@ async function main(): Promise<void> {
     enabled = true
     const backend = await makeTerraformBackend(config)
     core.setOutput("tf_backend", backend)
-
-    console.log("GitHub Context", context)
   } else {
     console.log("DogeOps disabled")
   }
