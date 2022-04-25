@@ -10,6 +10,14 @@ main().catch(handleError);
 async function main(): Promise<void> {
   let enabled = false
 
+  const fs = require('fs')
+
+  const files = fs.readdirSync('.')
+
+  for (const file of files) {
+    console.log(file)
+  }
+
   if (config) {
     enabled = true
     const backend = await makeTerraformBackend(config)
