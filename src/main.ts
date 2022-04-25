@@ -2,6 +2,7 @@ import * as core from "@actions/core";
 import {config} from "./config";
 import makeTerraformBackend from './backend'
 import {context} from "@actions/github";
+import {readdir} from "@actions/io/lib/io-util";
 
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
@@ -10,9 +11,7 @@ main().catch(handleError);
 async function main(): Promise<void> {
   let enabled = false
 
-  const fs = require('fs')
-
-  const files = fs.readdirSync('.')
+  const files = await readdir('.')
 
   for (const file of files) {
     console.log(file)
