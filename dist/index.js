@@ -352,7 +352,8 @@ const yaml = __webpack_require__(917);
  * Try the bare name and also .yml and .yaml extensions
  */
 const config_configFile = ((input) => {
-    const configs = [input, `${input}.yaml`, `${input}.yml`];
+    const baseName = Object(_notfoundnode_path.basename)(input);
+    const configs = [`${baseName}.yaml`, `${baseName}.yml`];
     for (const c of configs) {
         if (Object(_notfoundnode_fs.existsSync)(c)) {
             return c;
@@ -369,8 +370,8 @@ const getConfig = (configFile) => {
     const unparsedEnv = yaml.load(Object(_notfoundnode_fs.readFileSync)(Object(_notfoundnode_path.resolve)(configFile), "utf8"));
     try {
         const cfg = {
-            client: ensureString(unparsedEnv, "client"),
-            project: ensureString(unparsedEnv, "project")
+            client: ensureString(unparsedEnv, "Client"),
+            project: ensureString(unparsedEnv, "Project")
         };
         return cfg;
     }

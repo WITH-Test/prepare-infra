@@ -17,7 +17,8 @@ export interface Config {
  * Try the bare name and also .yml and .yaml extensions
  */
 const configFile = ((input) => {
-  const configs = [input, `${input}.yaml`, `${input}.yml`]
+  const baseName = path.basename(input)
+  const configs = [`${baseName}.yaml`, `${baseName}.yml`]
   for (const c of configs) {
     if (existsSync(c)) {
       return c
