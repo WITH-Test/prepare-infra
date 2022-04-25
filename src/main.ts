@@ -12,7 +12,9 @@ main().catch(handleError);
 async function main(): Promise<void> {
   let enabled = false
 
-  const files = await readdir(path.resolve('.'))
+  const here = path.resolve('.')
+  console.log("HERE", here)
+  const files = await readdir(here)
 
   for (const file of files) {
     console.log(file)
