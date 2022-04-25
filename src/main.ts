@@ -1,31 +1,22 @@
 import * as core from "@actions/core";
-import * as fs from "fs/promises";
-import { context } from "@actions/github";
+import {config} from "./config";
+import makeTerraformBackend from './backend'
 
 process.on("unhandledRejection", handleError);
 main().catch(handleError);
 
-async function exists(path: string): Promise<boolean> {
-  try {
-    await fs.access(path);
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 async function main(): Promise<void> {
-  const config = core.getInput("config_file");
+  let enabled = false
 
-  const dogeOpsEnabled = await exists(config);
-
-  if (dogeOpsEnabled) {
-    console.log("Config:", await fs.readFile(config));
+  if (config) {
+    enabled = true
+    const backend = await makeTerraformBackend(config)
+    core.setOutput("tf_backend", backend)
+  } else {
+    console.log("DogeOps disabled")
   }
-
-  console.log("Context:", context)
-
-  core.setOutput("enabled", dogeOpsEnabled);
+  core.setOutput("enabled", enabled);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

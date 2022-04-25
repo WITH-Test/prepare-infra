@@ -1,0 +1,5 @@
+bucket         = "with-dogeops-terraform-state"
+key            = "{{ client }}/{{ project }}/infra/backend/terraform.tfstate"
+region         = "eu-west-3"
+dynamodb_table = "terraform-locks"
+encrypt        = true
