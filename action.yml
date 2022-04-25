@@ -6,7 +6,7 @@ inputs:
   config_file:  # id of input
     description: 'Path to the config file'
     required: false
-    default: '.dogeops.yml'
+    default: 'dogeops.yml'
 
 outputs:
   dogeops:

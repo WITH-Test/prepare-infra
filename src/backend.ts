@@ -17,7 +17,7 @@ export default async function makeBackend(cfg: Config): Promise<string> {
   return await renderToFile('s3_backend.hcl', cfg)
 }
 
-export async function renderToFile(template: string, cfg: Config, destFolder: string = 'dogeops'): Promise<string> {
+export async function renderToFile(template: string, cfg: Config, destFolder: string = '.dogeops'): Promise<string> {
   await makeConfigDir(destFolder)
   const templateFile = `${template}.njk`
 

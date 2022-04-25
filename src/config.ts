@@ -17,15 +17,17 @@ export interface Config {
  * Try the bare name and also .yml and .yaml extensions
  */
 const configFile = ((input) => {
-  const baseName = path.basename(input)
+  const baseName = input.split('.')[0]
   const configs = [`${baseName}.yaml`, `${baseName}.yml`]
   for (const c of configs) {
+    console.log("config file is", c)
     if (existsSync(c)) {
-      return c
+      console.log("config file is", path.resolve(c))
+      return path.resolve(c)
     }
   }
   return ""
-})(core.getInput("config_file") || '.dogeops.yml')
+})(core.getInput("config_file") || 'dogeops.yml')
 
 function ensureString(object: { [name: string]: any }, propName: string): string {
   if (!object[propName] || object[propName].trim().length === 0)

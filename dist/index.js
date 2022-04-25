@@ -352,15 +352,17 @@ const yaml = __webpack_require__(917);
  * Try the bare name and also .yml and .yaml extensions
  */
 const config_configFile = ((input) => {
-    const baseName = Object(_notfoundnode_path.basename)(input);
+    const baseName = input.split('.')[0];
     const configs = [`${baseName}.yaml`, `${baseName}.yml`];
     for (const c of configs) {
+        console.log("config file is", c);
         if (Object(_notfoundnode_fs.existsSync)(c)) {
-            return c;
+            console.log("config file is", Object(_notfoundnode_path.resolve)(c));
+            return Object(_notfoundnode_path.resolve)(c);
         }
     }
     return "";
-})(Object(core.getInput)("config_file") || '.dogeops.yml');
+})(Object(core.getInput)("config_file") || 'dogeops.yml');
 function ensureString(object, propName) {
     if (!object[propName] || object[propName].trim().length === 0)
         throw new Error(propName + " does not exist or is empty");
@@ -407,7 +409,7 @@ async function exists(path) {
 async function makeBackend(cfg) {
     return await renderToFile('s3_backend.hcl', cfg);
 }
-async function renderToFile(template, cfg, destFolder = 'dogeops') {
+async function renderToFile(template, cfg, destFolder = '.dogeops') {
     await makeConfigDir(destFolder);
     const templateFile = `${template}.njk`;
     const env = Object(nunjucks.configure)('templates', {
