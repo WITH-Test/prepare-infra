@@ -11,6 +11,8 @@ inputs:
 outputs:
   dogeops:
     description: "Whether this project is DogeOps enabled"
+  tf_backend:
+    description: "When defined, the path to the Terraform backend config file"
 
 runs:
   using: 'node16'

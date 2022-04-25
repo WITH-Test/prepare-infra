@@ -360,7 +360,7 @@ const config_configFile = ((input) => {
         }
     }
     return "";
-})(Object(core.getInput)("config_file") || '.dogeops');
+})(Object(core.getInput)("config_file") || '.dogeops.yml');
 function ensureString(object, propName) {
     if (!object[propName] || object[propName].trim().length === 0)
         throw new Error(propName + " does not exist or is empty");

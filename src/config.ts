@@ -25,7 +25,7 @@ const configFile = ((input) => {
     }
   }
   return ""
-})(core.getInput("config_file") || '.dogeops')
+})(core.getInput("config_file") || '.dogeops.yml')
 
 function ensureString(object: { [name: string]: any }, propName: string): string {
   if (!object[propName] || object[propName].trim().length === 0)
