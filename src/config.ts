@@ -38,8 +38,8 @@ export const getConfig = (configFile: string) => {
   try {
 
     const cfg: Config = {
-      client: ensureString(unparsedEnv, "client"),
-      project: ensureString(unparsedEnv, "project")
+      client: ensureString(unparsedEnv, "Client"),
+      project: ensureString(unparsedEnv, "Project")
     }
     return cfg
   } catch {
